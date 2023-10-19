@@ -1,9 +1,9 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-const Button = ({ title, type, route, navigation }) => {
+const Button = ({ title, type, route, routeOptions, navigation }) => {
   return (
     <Pressable
-      onPress={() => navigation.navigate(route)}
+      onPress={() => navigation.navigate(route, routeOptions)}
       style={[
         styles.button,
         type === "secondary" ? styles.buttonSecondary : "",
@@ -23,9 +23,9 @@ const Button = ({ title, type, route, navigation }) => {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 20,
-    height: 70,
-    width: 300,
+    borderRadius: 25,
+    width: 350,
+    height: 75,
     backgroundColor: "#0075FF",
     justifyContent: "center",
     alignItems: "center",
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
+    fontSize: 15,
   },
   buttonSecondary: {
     backgroundColor: "#2B2B2B",

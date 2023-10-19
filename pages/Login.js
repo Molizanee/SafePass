@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -11,16 +10,27 @@ export default function Login({ navigation }) {
         <Text style={styles.brandText}>SafePass</Text>
         <Text style={styles.brandSubText}>Suas senhas e contas seguras.</Text>
       </View>
-      <View style={styles.inputs}>
-        <Input Icon={IconMail} placeholder="Seu E-mail" />
-        <Input Icon={IconLock} placeholder="Senha de Acesso" />
-      </View>
-      <View style={styles.buttons}>
-        <Button title="Login" route="Homepage" navigation={navigation} />
-        <Button title="Criar Conta" type="secondary" />
-        <Pressable>
-          <Text style={styles.forgotenPass}>Esqueci a senha</Text>
-        </Pressable>
+      <View style={styles.content}>
+        <View style={styles.inputs}>
+          <Input Icon={IconMail} placeholder="Seu E-mail" />
+          <Input
+            Icon={IconLock}
+            placeholder="Senha de Acesso"
+            password={true}
+          />
+        </View>
+        <View style={styles.buttons}>
+          <Button
+            title="Login"
+            route="Tabs"
+            routeOptions={{ screen: "Homepage" }}
+            navigation={navigation}
+          />
+          <Button title="Criar Conta" type="secondary" />
+          <Pressable>
+            <Text style={styles.forgotenPass}>Esqueci a senha</Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -32,6 +42,7 @@ const styles = StyleSheet.create({
     gap: 100,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#121212",
   },
   logo: {
     alignItems: "center",
@@ -51,6 +62,9 @@ const styles = StyleSheet.create({
   buttons: {
     justifyContent: "center",
     alignItems: "center",
+    gap: 20,
+  },
+  content: {
     gap: 20,
   },
   forgotenPass: {
