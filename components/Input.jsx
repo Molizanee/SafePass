@@ -3,7 +3,7 @@ import { TextInput, StyleSheet, View } from "react-native";
 const Input = ({ Icon, placeholder, password = false }) => {
   return (
     <View style={styles.input}>
-      <Icon color="#0075FF" size={40} stroke={1.5} />
+      <Icon color="#0075FF" size={35} stroke={1.5} />
       <TextInput
         style={styles.textInput}
         placeholder={placeholder}
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: "row",
     alignItems: "center",
-    width: 350,
+    width: "100%",
     height: 70,
     padding: 20,
     gap: 10,

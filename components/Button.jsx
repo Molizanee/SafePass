@@ -24,8 +24,8 @@ const Button = ({ title, type, route, routeOptions, navigation }) => {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 25,
-    width: 350,
-    height: 75,
+    width: "100%",
+    height: 70,
     backgroundColor: "#0075FF",
     justifyContent: "center",
     alignItems: "center",

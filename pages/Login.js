@@ -1,14 +1,14 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import Logo from "../components/Logo";
 import { IconLock, IconMail } from "tabler-icons-react-native";
 
 export default function Login({ navigation }) {
   return (
-    <View style={styles.login}>
+    <View style={styles.grid}>
       <View style={styles.logo}>
-        <Text style={styles.brandText}>SafePass</Text>
-        <Text style={styles.brandSubText}>Suas senhas e contas seguras.</Text>
+        <Logo />
       </View>
       <View style={styles.content}>
         <View style={styles.inputs}>
@@ -37,15 +37,18 @@ export default function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  login: {
+  grid: {
     flex: 1,
-    gap: 100,
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: "column",
+    paddingTop: 50,
+    paddingLeft: 30,
+    paddingRight: 30,
     backgroundColor: "#121212",
+    gap: 80,
   },
   logo: {
     alignItems: "center",
+    marginTop: 70,
   },
   brandText: {
     fontSize: 36,
@@ -56,19 +59,19 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#858585",
   },
+  content: {
+    gap: 20,
+    marginTop: 60,
+  },
   inputs: {
     gap: 20,
   },
   buttons: {
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 20,
-  },
-  content: {
     gap: 20,
   },
   forgotenPass: {
     color: "red",
     fontSize: 15,
+    alignSelf: "center",
   },
 });
