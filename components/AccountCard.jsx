@@ -1,12 +1,15 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 
-const AccountCard = () => {
+const AccountCard = ({ account, Product }) => {
   return (
     <>
       <View style={styles.container}>
-        <Image src="../assets/splash.png" height={70} width={70} />
-        <Text>ola</Text>
+        <View>
+          <Product width={80} height={80} />
+        </View>
+        <Text style={styles.text}>{account}</Text>
       </View>
+
       <View style={styles.bar} />
     </>
   );
@@ -14,13 +17,18 @@ const AccountCard = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 150,
+    flex: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 20,
+    padding: 20,
+    height: 130,
     backgroundColor: "#2B2B2B",
     borderRadius: 25,
   },
   text: {
-    fontSize: 20,
-    color: "#ffff",
+    fontSize: 15,
+    color: "#858585",
   },
   bar: {
     height: 10,

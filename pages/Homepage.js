@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import AccountCard from "../components/AccountCard";
+import Google from "../assets/google.svg";
 import { IconSearch } from "tabler-icons-react-native";
 
 const Homepage = () => {
@@ -15,7 +16,7 @@ const Homepage = () => {
         <Text style={styles.text}>Suas atividades recentes</Text>
       </View>
       <View style={styles.accountCards}>
-        <AccountCard />
+        <AccountCard account="dmolizane@gmail.com" Product={Google} />
       </View>
     </View>
   );

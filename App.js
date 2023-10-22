@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
+import Accounts from "./pages/Accounts";
+import Profile from "./pages/Profile";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -12,6 +14,8 @@ function Tabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Homepage" component={Homepage} />
+      <Tab.Screen name="Contas" component={Accounts} />
+      <Tab.Screen name="Perfil" component={Profile} />
     </Tab.Navigator>
   );
 }
