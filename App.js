@@ -6,16 +6,26 @@ import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
 import Accounts from "./pages/Accounts";
 import Profile from "./pages/Profile";
+import CreateNewPassword from "./pages/CreateNewPassword";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function Tabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Tab.Screen name="Homepage" component={Homepage} />
       <Tab.Screen name="Contas" component={Accounts} />
       <Tab.Screen name="Perfil" component={Profile} />
+      <Tab.Screen
+        name="CreateNewPassword"
+        component={CreateNewPassword}
+        options={{ tabBarButton: () => null }} // This hides the tab
+      />
     </Tab.Navigator>
   );
 }

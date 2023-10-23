@@ -5,12 +5,17 @@ import AccountCard from "../components/AccountCard";
 import Google from "../assets/google.svg";
 import { IconSearch } from "tabler-icons-react-native";
 
-const Homepage = () => {
+export default function Homepage({ navigation }) {
   return (
     <View style={styles.grid}>
       <View style={styles.top}>
         <Input Icon={IconSearch} placeholder="Pesquisar Conta"></Input>
-        <Button title="Criar Senha" type="secondary" />
+        <Button
+          title="Criar Senha"
+          type="secondary"
+          route="CreateNewPassword"
+          navigation={navigation}
+        />
       </View>
       <View>
         <Text style={styles.text}>Suas atividades recentes</Text>
@@ -20,7 +25,7 @@ const Homepage = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   grid: {
@@ -45,5 +50,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-
-export default Homepage;
