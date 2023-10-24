@@ -29,7 +29,13 @@ export default function Login({ navigation }) {
           <Pressable>
             <Text style={styles.forgotenPass}>Esqueci a senha</Text>
           </Pressable>
-          <Button title="Criar Conta" type="secondary" />
+          <Button
+            title="Criar Conta"
+            type="secondary"
+            route="Tabs"
+            routeOptions={{ screen: "CreateAccount" }}
+            navigation={navigation}
+          />
         </View>
       </View>
     </View>
