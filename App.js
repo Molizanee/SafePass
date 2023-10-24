@@ -17,6 +17,15 @@ function Tabs() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "#2B2B2B",
+          borderColor: "#2B2B2B",
+          activeTintColor: "#0075FF",
+        },
+        tabBarLabelStyle: {
+          marginBottom: 13,
+          fontSize: 14,
+        },
       }}
     >
       <Tab.Screen name="Homepage" component={Homepage} />
