@@ -41,12 +41,11 @@ const styles = StyleSheet.create({
   titlePosition: {
     flex: 1,
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 50,
   },
   inputsAndButtons: {
-    flex: 1,
+    flex: 3,
     gap: 20,
-    marginTop: -400,
   },
 });
 

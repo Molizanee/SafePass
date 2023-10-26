@@ -34,7 +34,7 @@ function Tabs() {
       <Tab.Screen
         name="CreateAccount"
         component={CreateAccount}
-        options={{ tabBarButton: () => null }}
+        options={{ tabBarStyle: { display: "none" }, tabBarButton: () => null }}
       />
       <Tab.Screen
         name="CreateNewPassword"

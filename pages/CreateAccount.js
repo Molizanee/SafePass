@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { IconLock, IconLockPlus, IconMail } from "tabler-icons-react-native";
 
-const CreateAccount = () => {
+const CreateAccount = ({ navigation }) => {
   return (
     <View style={styles.grid}>
       <View style={styles.titlePosition}>
@@ -16,7 +16,12 @@ const CreateAccount = () => {
         </Text>
         <Input Icon={IconLock} placeholder="Sua senha de acesso" />
         <Input Icon={IconLockPlus} placeholder="Repita a senha de acesso" />
-        <Button title="Criar Conta!" />
+        <Button
+          title="Criar Conta!"
+          route="Tabs"
+          routeOptions={{ screen: "Homepage" }}
+          navigation={navigation}
+        />
       </View>
     </View>
   );
