@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Button from "../components/Button";
+import ButtonAuth from "../components/ButtonAuth";
 import Input from "../components/Input";
 import Logo from "../components/Logo";
 import { IconLock, IconMail } from "tabler-icons-react-native";
@@ -20,12 +21,7 @@ export default function Login({ navigation }) {
           />
         </View>
         <View style={styles.buttons}>
-          <Button
-            title="Login"
-            route="Tabs"
-            routeOptions={{ screen: "Homepage" }}
-            navigation={navigation}
-          />
+          <ButtonAuth title="Login" />
           <Pressable>
             <Text style={styles.forgotenPass}>Esqueci a senha</Text>
           </Pressable>
