@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { Platform } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { decode as atob, encode as btoa } from "base-64";
 
 const auth0ClientId = "QREyoN2vTCN98RgRlvwQSvmeE798Fd0R";
@@ -22,7 +24,7 @@ if (!global.atob) {
   global.atob = decode;
 }
 
-const ButtonAuth = ({ type, title }) => {
+const ButtonAuth = ({ type, title, navigation }) => {
   const [name, setName] = useState(null);
 
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
@@ -48,7 +50,7 @@ const ButtonAuth = ({ type, title }) => {
       if (result.error) {
         Alert.alert(
           "Authentication error",
-          result.params.error_description || "something went wrong"
+          result.params.error_description || "Algo deu errado!"
         );
         return;
       }
@@ -60,10 +62,12 @@ const ButtonAuth = ({ type, title }) => {
 
         const { name } = decoded;
         setName(name);
-        console.log(name);
+        navigation.navigate("Tabs", { screen: "Homepage" });
+      } else {
+        navigation.navigate("Login");
       }
     }
-  }, [result]);
+  }, [result, navigation]);
 
   return (
     <Pressable

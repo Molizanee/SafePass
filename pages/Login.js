@@ -21,7 +21,7 @@ export default function Login({ navigation }) {
           />
         </View>
         <View style={styles.buttons}>
-          <ButtonAuth title="Login" />
+          <ButtonAuth title="Login" navigation={navigation} />
           <Pressable>
             <Text style={styles.forgotenPass}>Esqueci a senha</Text>
           </Pressable>
