@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Button from "../components/Button";
+import ButtonWithRoute from "../components/ButtonWithRoute";
 import ButtonAuth from "../components/ButtonAuth";
 import Input from "../components/Input";
 import Logo from "../components/Logo";
@@ -20,12 +20,12 @@ export default function Login({ navigation }) {
             password={true}
           />
         </View>
-        <View style={styles.buttons}>
+        <View style={styles.ButtonWithRoutes}>
           <ButtonAuth title="Login" navigation={navigation} />
           <Pressable>
             <Text style={styles.forgotenPass}>Esqueci a senha</Text>
           </Pressable>
-          <Button
+          <ButtonWithRoute
             title="Criar Conta"
             type="secondary"
             route="Tabs"
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   inputs: {
     gap: 20,
   },
-  buttons: {
+  ButtonWithRoutes: {
     gap: 20,
   },
   forgotenPass: {

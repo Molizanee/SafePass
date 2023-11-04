@@ -1,9 +1,9 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-const Button = ({ title, type, execute }) => {
+const Button = ({ title, type, route, routeOptions, navigation }) => {
   return (
     <Pressable
-      onPress={() => execute()}
+      onPress={() => navigation.navigate(route, routeOptions)}
       style={[
         styles.button,
         type === "secondary" ? styles.buttonSecondary : "",

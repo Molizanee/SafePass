@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import Button from "../components/Button";
+import ButtonWithRoute from "../components/ButtonWithRoute";
 import Input from "../components/Input";
 import AccountCard from "../components/AccountCard";
 import Google from "../assets/google.svg";
@@ -10,7 +10,7 @@ export default function Homepage({ navigation }) {
     <View style={styles.grid}>
       <View style={styles.top}>
         <Input Icon={IconSearch} placeholder="Pesquisar Conta"></Input>
-        <Button
+        <ButtonWithRoute
           title="Criar Senha"
           type="secondary"
           route="CreateNewPassword"

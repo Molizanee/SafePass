@@ -58,6 +58,7 @@ const ButtonAuth = ({ type, title, navigation }) => {
         // Retrieve the JWT token and decode it
         const jwtToken = result.params.id_token;
         console.log(jwtToken);
+        console.log(atob(jwtToken.split(".")[1]));
         const decoded = jwtDecode(jwtToken);
 
         const { name } = decoded;
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontSize: 15,
+    fontSize: 18,
   },
   buttonSecondary: {
     backgroundColor: "#2B2B2B",

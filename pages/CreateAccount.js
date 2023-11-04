@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import Input from "../components/Input";
-import Button from "../components/Button";
+import ButtonWithRoute from "../components/ButtonWithRoute";
 import { IconLock, IconLockPlus, IconMail } from "tabler-icons-react-native";
 
 const CreateAccount = ({ navigation }) => {
@@ -9,14 +9,14 @@ const CreateAccount = ({ navigation }) => {
       <View style={styles.titlePosition}>
         <Text style={styles.title}>Criar conta</Text>
       </View>
-      <View style={styles.inputsAndButton}>
+      <View style={styles.inputsAndButtonWithRoute}>
         <Input Icon={IconMail} placeholder="Seu e-mail" />
         <Text style={styles.text}>
           Sua senha de acesso não pode ser recuperada em caso de perca!
         </Text>
         <Input Icon={IconLock} placeholder="Sua senha de acesso" />
         <Input Icon={IconLockPlus} placeholder="Repita a senha de acesso" />
-        <Button
+        <ButtonWithRoute
           title="Criar Conta!"
           route="Tabs"
           routeOptions={{ screen: "Homepage" }}
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "red",
   },
-  inputsAndButton: {
+  inputsAndButtonWithRoute: {
     flex: 1,
     gap: 20,
     marginTop: -400,
