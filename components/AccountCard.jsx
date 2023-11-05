@@ -1,13 +1,20 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { IconCopy } from "tabler-icons-react-native";
 
-const AccountCard = ({ account, Product }) => {
+const AccountCard = ({ Product, account, password }) => {
   return (
     <>
       <View style={styles.container}>
         <View>
           <Product width={80} height={80} />
         </View>
-        <Text style={styles.text}>{account}</Text>
+        <View style={styles.data}>
+          <Text style={styles.text}>{account}</Text>
+          <Text style={styles.text}>{password}</Text>
+        </View>
+        <Pressable>
+          <IconCopy color="#0075FF" size={35} stroke={1.5} />
+        </Pressable>
       </View>
 
       <View style={styles.bar} />
@@ -34,6 +41,12 @@ const styles = StyleSheet.create({
     height: 10,
     width: 80,
     backgroundColor: "858585",
+  },
+  data: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: 10,
   },
 });
 

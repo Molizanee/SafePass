@@ -1,9 +1,8 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import ButtonWithRoute from "../components/ButtonWithRoute";
+import { StyleSheet, Text, View } from "react-native";
+
 import ButtonAuth from "../components/ButtonAuth";
-import Input from "../components/Input";
+
 import Logo from "../components/Logo";
-import { IconLock, IconMail } from "tabler-icons-react-native";
 
 export default function Login({ navigation }) {
   return (
@@ -12,26 +11,12 @@ export default function Login({ navigation }) {
         <Logo />
       </View>
       <View style={styles.content}>
-        <View style={styles.inputs}>
-          <Input Icon={IconMail} placeholder="Seu E-mail" />
-          <Input
-            Icon={IconLock}
-            placeholder="Senha de Acesso"
-            password={true}
-          />
-        </View>
+        <View style={styles.inputs}></View>
         <View style={styles.ButtonWithRoutes}>
-          <ButtonAuth title="Login" navigation={navigation} />
-          <Pressable>
-            <Text style={styles.forgotenPass}>Esqueci a senha</Text>
-          </Pressable>
-          <ButtonWithRoute
-            title="Criar Conta"
-            type="secondary"
-            route="Tabs"
-            routeOptions={{ screen: "CreateAccount" }}
-            navigation={navigation}
-          />
+          <Text style={styles.title}>
+            Utilizamos o Auth0 como autenticação!
+          </Text>
+          <ButtonAuth title="Login com Google" navigation={navigation} />
         </View>
       </View>
     </View>
@@ -61,6 +46,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#858585",
   },
+  title: {
+    fontSize: 20,
+    color: "#858585",
+  },
   content: {
     gap: 20,
     marginTop: 60,
@@ -69,6 +58,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   ButtonWithRoutes: {
+    marginTop: 60,
     gap: 20,
   },
   forgotenPass: {

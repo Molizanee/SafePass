@@ -21,7 +21,11 @@ export default function Homepage({ navigation }) {
         <Text style={styles.text}>Suas atividades recentes</Text>
       </View>
       <View style={styles.accountCards}>
-        <AccountCard account="dmolizane@gmail.com" Product={Google} />
+        <AccountCard
+          account="dmolizane@gmail.com"
+          Product={Google}
+          password={"asdasd"}
+        />
       </View>
     </View>
   );
