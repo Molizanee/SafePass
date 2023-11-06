@@ -65,6 +65,8 @@ const ButtonAuth = ({ type, title, navigation }) => {
         setName(name);
         navigation.navigate("Tabs", { screen: "Homepage" });
       } else {
+        console.log("Login failed");
+        console.log(result);
         navigation.navigate("Login");
       }
     }

@@ -38,10 +38,30 @@ const useStorage = () => {
     }
   };
 
+  const getAllKeys = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      return keys;
+    } catch (error) {
+      console.log("ERRO AO PEGAR KEYS", error);
+    }
+  };
+
+  const multiGet = async (keys) => {
+    try {
+      const passwords = await AsyncStorage.multiGet(keys);
+      return passwords;
+    } catch (error) {
+      console.log("ERRO AO PEGAR KEYS", error);
+    }
+  };
+
   return {
     getItem,
     saveItem,
     removeItem,
+    getAllKeys,
+    multiGet,
   };
 };
 

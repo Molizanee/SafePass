@@ -4,8 +4,21 @@ import Input from "../components/Input";
 import AccountCard from "../components/AccountCard";
 import Google from "../assets/google.svg";
 import { IconSearch } from "tabler-icons-react-native";
+import useStorage from "../hooks/useStorage";
+import { useEffect, useState } from "react";
 
 export default function Homepage({ navigation }) {
+  const { getAllKeys, multiGet } = useStorage();
+  const [passwords, setPasswords] = useState([]);
+  useEffect(() => {
+    const loadAllKeys = async () => {
+      const keys = await getAllKeys();
+      const passwords = await multiGet(keys);
+      setPasswords(passwords);
+    };
+    loadAllKeys();
+  }, []);
+
   return (
     <View style={styles.grid}>
       <View style={styles.top}>
