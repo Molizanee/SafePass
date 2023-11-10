@@ -1,18 +1,26 @@
-import { Text, StyleSheet, View } from "react-native";
-import { IconLock, IconWorldWww } from "tabler-icons-react-native";
-import Input from "../components/Input";
-import ButtonWithRoute from "../components/ButtonWithRoute";
-import Button from "../components/Button";
 import Slider from "@react-native-community/slider";
 import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { IconLock, IconWorldWww } from "tabler-icons-react-native";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import useStorage from "../hooks/useStorage";
 
 const charset =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*()_+~`|}{[]:;?><,./-=";
 
-const CreateNewPassword = () => {
+const CreateNewPassword = ({ navigation }) => {
+  const { saveItem } = useStorage();
+
   const [size, setSize] = useState(10);
+  const [site, setSite] = useState("");
 
   const [passwordValue, setPasswordValue] = useState("");
+
+  const savePassword = () => {
+    saveItem(site, { password: passwordValue });
+    navigation.navigate("Homepage");
+  };
 
   const generatePassword = (length) => {
     let password = "";
@@ -29,7 +37,12 @@ const CreateNewPassword = () => {
         <Text style={styles.title}>Criar nova senha</Text>
       </View>
       <View style={styles.inputsAndButtonWithRoutes}>
-        <Input Icon={IconWorldWww} placeholder="E-mail, site ou app" />
+        <Input
+          Icon={IconWorldWww}
+          placeholder="E-mail, site ou app"
+          value={site}
+          setText={setSite}
+        />
         <Input
           Icon={IconLock}
           placeholder="Senha de Acesso"
@@ -57,7 +70,11 @@ const CreateNewPassword = () => {
           type="secondary"
           execute={() => generatePassword(size)}
         />
-        <ButtonWithRoute title="Salvar Senha" />
+        <Button
+          title="Salvar Senha"
+          execute={() => savePassword()}
+          disabled={!passwordValue || !site}
+        />
       </View>
     </View>
   );

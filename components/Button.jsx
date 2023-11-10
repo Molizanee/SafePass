@@ -1,8 +1,9 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-const Button = ({ title, type, execute }) => {
+const Button = ({ title, type, execute, disabled = false }) => {
   return (
     <Pressable
+      disabled={disabled}
       onPress={() => execute()}
       style={[
         styles.button,

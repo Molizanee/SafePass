@@ -1,7 +1,14 @@
-import { TextInput, StyleSheet, View, Pressable } from "react-native";
 import React, { useState } from "react";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
-const Input = ({ Icon, placeholder, password = false, value, setText }) => {
+const Input = ({
+  Icon,
+  placeholder,
+  password = false,
+  value,
+  setText,
+  callback = () => {},
+}) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -21,7 +28,10 @@ const Input = ({ Icon, placeholder, password = false, value, setText }) => {
         cursorColor="#0075FF"
         secureTextEntry={!isPasswordVisible && password} // Toggle secureTextEntry based on state
         value={value}
-        onChangeText={(text) => setText(text)}
+        onChangeText={(text) => {
+          setText(text);
+          callback(text);
+        }}
       />
     </View>
   );

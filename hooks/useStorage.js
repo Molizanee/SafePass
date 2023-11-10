@@ -5,20 +5,16 @@ const useStorage = () => {
   const getItem = async (key) => {
     try {
       const passwords = await AsyncStorage.getItem(key);
-      return JSON.parse(passwords) || [];
+      return JSON.parse(passwords) || {};
     } catch (error) {
       console.log("Erro ao buscar", error);
-      return [];
+      return {};
     }
   };
   //Salvar senha
   const saveItem = async (key, value) => {
     try {
-      let passwords = await getItem(key);
-
-      passwords.push(value);
-
-      await AsyncStorage.setItem(key, JSON.stringify(passwords));
+      await AsyncStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.log("ERRO AO SALVAR", error);
     }

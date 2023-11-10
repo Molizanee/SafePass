@@ -1,46 +1,85 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { IconSearch } from "tabler-icons-react-native";
+import Google from "../assets/google.svg";
+import AccountCard from "../components/AccountCard";
 import ButtonWithRoute from "../components/ButtonWithRoute";
 import Input from "../components/Input";
-import AccountCard from "../components/AccountCard";
-import Google from "../assets/google.svg";
-import { IconSearch } from "tabler-icons-react-native";
 import useStorage from "../hooks/useStorage";
-import { useEffect, useState } from "react";
 
 export default function Homepage({ navigation }) {
   const { getAllKeys, multiGet } = useStorage();
   const [passwords, setPasswords] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const loadAllKeys = async () => {
+    const keys = await getAllKeys();
+    const passwords = await multiGet(keys);
+    let passwordsDict = {};
+    for (var entry of passwords) {
+      passwordsDict[entry[0]] = JSON.parse(entry[1]);
+    }
+    setPasswords(passwordsDict);
+  };
   useEffect(() => {
-    const loadAllKeys = async () => {
-      const keys = await getAllKeys();
-      const passwords = await multiGet(keys);
-      setPasswords(passwords);
-    };
-    loadAllKeys();
-  }, []);
+    const unsubscribe = navigation.addListener("focus", () => {
+      loadAllKeys();
+    });
+
+    return unsubscribe;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigation]);
 
   return (
-    <View style={styles.grid}>
-      <View style={styles.top}>
-        <Input Icon={IconSearch} placeholder="Pesquisar Conta"></Input>
-        <ButtonWithRoute
-          title="Criar Senha"
-          type="secondary"
-          route="CreateNewPassword"
-          navigation={navigation}
-        />
+    <ScrollView>
+      <View style={styles.grid}>
+        <View style={styles.top}>
+          <Input
+            Icon={IconSearch}
+            placeholder="Pesquisar Conta"
+            value={search}
+            setText={setSearch}
+            callback={(text) => {
+              if (!text || text === "") {
+                loadAllKeys();
+                return;
+              }
+              const matches = Object.keys(passwords).filter((key) => {
+                return key.includes(search);
+              });
+              let passwordsDict = {};
+              for (var entry of matches) {
+                passwordsDict[entry] = passwords[entry];
+              }
+              console.log(passwordsDict);
+              setPasswords(passwordsDict);
+            }}
+          ></Input>
+
+          <ButtonWithRoute
+            title="Criar Senha"
+            type="secondary"
+            route="CreateNewPassword"
+            navigation={navigation}
+          />
+        </View>
+        <View>
+          <Text style={styles.text}>Suas atividades recentes</Text>
+        </View>
+        <View style={styles.accountCards}>
+          {Object.keys(passwords).map((key) => {
+            return (
+              <AccountCard
+                key={key}
+                Product={Google}
+                account={key}
+                password={passwords[key].password}
+              />
+            );
+          })}
+        </View>
       </View>
-      <View>
-        <Text style={styles.text}>Suas atividades recentes</Text>
-      </View>
-      <View style={styles.accountCards}>
-        <AccountCard
-          account="dmolizane@gmail.com"
-          Product={Google}
-          password={"asdasd"}
-        />
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 

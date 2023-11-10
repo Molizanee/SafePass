@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import * as Clipboard from "expo-clipboard";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { IconCopy } from "tabler-icons-react-native";
 
 const AccountCard = ({ Product, account, password }) => {
@@ -12,7 +13,11 @@ const AccountCard = ({ Product, account, password }) => {
           <Text style={styles.text}>{account}</Text>
           <Text style={styles.text}>{password}</Text>
         </View>
-        <Pressable>
+        <Pressable
+          onPress={async () => {
+            await Clipboard.setStringAsync(password);
+          }}
+        >
           <IconCopy color="#0075FF" size={35} stroke={1.5} />
         </Pressable>
       </View>
