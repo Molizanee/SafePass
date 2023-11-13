@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 import ButtonAuth from "../components/ButtonAuth";
 
+import Google from "../assets/google.svg";
 import Logo from "../components/Logo";
 
 export default function Login({ navigation }) {
@@ -16,7 +17,11 @@ export default function Login({ navigation }) {
           <Text style={styles.title}>
             Utilizamos o Auth0 como autenticação!
           </Text>
-          <ButtonAuth title="Login com Google" navigation={navigation} />
+          <ButtonAuth
+            title="Login com Google"
+            navigation={navigation}
+            Product={Google}
+          />
         </View>
       </View>
     </View>

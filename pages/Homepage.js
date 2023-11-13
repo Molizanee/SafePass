@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { IconSearch } from "tabler-icons-react-native";
-import Google from "../assets/google.svg";
+import { IconLock, IconSearch } from "tabler-icons-react-native";
 import AccountCard from "../components/AccountCard";
 import ButtonWithRoute from "../components/ButtonWithRoute";
 import Input from "../components/Input";
@@ -31,7 +30,7 @@ export default function Homepage({ navigation }) {
   }, [navigation]);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.background}>
       <View style={styles.grid}>
         <View style={styles.top}>
           <Input
@@ -71,9 +70,10 @@ export default function Homepage({ navigation }) {
             return (
               <AccountCard
                 key={key}
-                Product={Google}
+                Product={IconLock}
                 account={key}
                 password={passwords[key].password}
+                callback={loadAllKeys}
               />
             );
           })}
@@ -84,13 +84,15 @@ export default function Homepage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  background: {
+    backgroundColor: "#121212",
+  },
   grid: {
     flex: 1,
     flexDirection: "column",
     paddingTop: 50,
     paddingLeft: 30,
     paddingRight: 30,
-    backgroundColor: "#121212",
   },
   top: {
     flex: 0,

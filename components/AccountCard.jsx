@@ -1,28 +1,44 @@
 import * as Clipboard from "expo-clipboard";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { IconCopy } from "tabler-icons-react-native";
+import { TextInput } from "react-native-gesture-handler";
+import { IconCopy, IconTrash } from "tabler-icons-react-native";
+import useStorage from "../hooks/useStorage";
 
-const AccountCard = ({ Product, account, password }) => {
+const AccountCard = ({ Product, account, password, callback }) => {
+  const { removeItem } = useStorage();
+
+  const handleDelete = async (key) => {
+    await removeItem(key);
+    callback();
+  };
+
   return (
     <>
-      <View style={styles.container}>
-        <View>
-          <Product width={80} height={80} />
+      <Pressable>
+        <View style={styles.container}>
+          <View>
+            <Product width={80} height={80} color="#0075FF" stroke={1} />
+          </View>
+          <View style={styles.data}>
+            <Text style={styles.text}>{account}</Text>
+            <TextInput style={styles.text} secureTextEntry={true}>
+              {password}
+            </TextInput>
+          </View>
+          <Pressable
+            onPress={async () => {
+              await Clipboard.setStringAsync(password);
+            }}
+          >
+            <IconCopy color="#0075FF" size={35} stroke={1.5} />
+          </Pressable>
+          <Pressable onPress={() => handleDelete(account)}>
+            <IconTrash color="#0075FF" size={35} stroke={1.5} />
+          </Pressable>
         </View>
-        <View style={styles.data}>
-          <Text style={styles.text}>{account}</Text>
-          <Text style={styles.text}>{password}</Text>
-        </View>
-        <Pressable
-          onPress={async () => {
-            await Clipboard.setStringAsync(password);
-          }}
-        >
-          <IconCopy color="#0075FF" size={35} stroke={1.5} />
-        </Pressable>
-      </View>
 
-      <View style={styles.bar} />
+        <View style={styles.bar} />
+      </Pressable>
     </>
   );
 };
@@ -43,9 +59,14 @@ const styles = StyleSheet.create({
     color: "#858585",
   },
   bar: {
-    height: 10,
-    width: 80,
-    backgroundColor: "858585",
+    marginTop: 10,
+    marginBottom: 10,
+    height: 3,
+    width: 200,
+    borderRadius: 20,
+    flex: 1,
+    alignSelf: "center",
+    backgroundColor: "#858585",
   },
   data: {
     flex: 1,

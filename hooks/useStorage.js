@@ -23,12 +23,7 @@ const useStorage = () => {
   //Remover senha
   const removeItem = async (key, item) => {
     try {
-      let passwords = await getItem(key);
-      let myPasswords = passwords.filter((password) => {
-        return password !== item;
-      });
-      await AsyncStorage.setItem(key, JSON.stringify(myPasswords));
-      return myPasswords;
+      await AsyncStorage.removeItem(key);
     } catch (error) {
       console.log("ERRO AO DELETAR", error);
     }

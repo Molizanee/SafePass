@@ -1,11 +1,8 @@
+import { decode as atob } from "base-64";
 import * as AuthSession from "expo-auth-session";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
-import { Platform } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { decode as atob, encode as btoa } from "base-64";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 const auth0ClientId = "QREyoN2vTCN98RgRlvwQSvmeE798Fd0R";
 const authorizationEndpoint =
@@ -24,7 +21,7 @@ if (!global.atob) {
   global.atob = decode;
 }
 
-const ButtonAuth = ({ type, title, navigation }) => {
+const ButtonAuth = ({ Product, type, title, navigation }) => {
   const [name, setName] = useState(null);
 
   const [request, result, promptAsync] = AuthSession.useAuthRequest(
@@ -81,14 +78,17 @@ const ButtonAuth = ({ type, title, navigation }) => {
         type === "secondary" ? styles.buttonSecondary : "",
       ]}
     >
-      <Text
-        style={[
-          styles.buttonText,
-          type === "secondary" ? styles.buttonTextSecondary : "",
-        ]}
-      >
-        {title}
-      </Text>
+      <View style={styles.textAndLogo}>
+        <Product width={50} height={50} />
+        <Text
+          style={[
+            styles.buttonText,
+            type === "secondary" ? styles.buttonTextSecondary : "",
+          ]}
+        >
+          {title}
+        </Text>
+      </View>
     </Pressable>
   );
 };
@@ -114,6 +114,13 @@ const styles = StyleSheet.create({
   },
   buttonTextSecondary: {
     color: "#0075FF",
+  },
+  textAndLogo: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 20,
   },
 });
 
