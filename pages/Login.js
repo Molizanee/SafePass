@@ -43,17 +43,18 @@ const styles = StyleSheet.create({
     marginTop: 70,
   },
   brandText: {
-    fontSize: 36,
-    fontWeight: "600",
+    fontSize: 40,
+    fontWeight: "700",
     color: "#0075FF",
   },
   brandSubText: {
-    fontSize: 15,
+    fontSize: 20,
     color: "#858585",
   },
   title: {
     fontSize: 20,
     color: "#858585",
+    alignSelf: "center",
   },
   content: {
     gap: 20,

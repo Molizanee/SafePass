@@ -38,6 +38,7 @@ const Accounts = ({ navigation }) => {
                 Product={IconLock}
                 account={key}
                 password={passwords[key].password}
+                callback={loadAllKeys}
               />
             );
           })}

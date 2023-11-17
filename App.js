@@ -1,12 +1,12 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Login from "./pages/Login";
-import Homepage from "./pages/Homepage";
+import * as React from "react";
 import Accounts from "./pages/Accounts";
-import Profile from "./pages/Profile";
 import CreateNewPassword from "./pages/CreateNewPassword";
+import Homepage from "./pages/Homepage";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

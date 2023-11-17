@@ -1,4 +1,5 @@
 import * as Clipboard from "expo-clipboard";
+import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { IconCopy, IconTrash } from "tabler-icons-react-native";
@@ -12,16 +13,24 @@ const AccountCard = ({ Product, account, password, callback }) => {
     callback();
   };
 
+  const [isPasswordVisible, setPasswordVisible] = useState(true);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <>
       <Pressable>
         <View style={styles.container}>
-          <View>
-            <Product width={80} height={80} color="#0075FF" stroke={1} />
-          </View>
+          <Pressable onPress={togglePasswordVisibility}>
+            <View>
+              <Product width={80} height={80} color="#0075FF" stroke={1} />
+            </View>
+          </Pressable>
           <View style={styles.data}>
             <Text style={styles.text}>{account}</Text>
-            <TextInput style={styles.text} secureTextEntry={true}>
+            <TextInput style={styles.text} secureTextEntry={isPasswordVisible}>
               {password}
             </TextInput>
           </View>

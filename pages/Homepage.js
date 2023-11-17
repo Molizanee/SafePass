@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingLeft: 30,
     paddingRight: 30,
+    marginTop: 20,
   },
   top: {
     flex: 0,
